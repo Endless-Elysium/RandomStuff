@@ -12,19 +12,27 @@ namespace RPS
         public static void GameStart()
         {
             Console.WriteLine("Welcome to Rock Paper Scissors!");
-            Console.WriteLine("Rock, paper, or scissors?");
-            string input = Console.ReadLine();
-            while (input == null)
+            while (true)
             {
-                input = Console.ReadLine();
+                Console.WriteLine("Rock, paper, or scissors?");
+                string input = Console.ReadLine();
+                while (input == null)
+                {
+                    input = Console.ReadLine();
+                }
+                input = input.ToLower();
+                WinOrLose(input, Foe());
+                if (PlayAgain())
+                {
+                    continue;
+                }
+                return;
             }
-            input = input.ToLower();
-            WinOrLose(input, Foe());
         }
         private static string Foe()
         {   
             random = new Random();
-            switch(random.Next(0,4))
+            switch(random.Next(1,4))
             {
                 case 1:
                     return "rock";
@@ -35,6 +43,17 @@ namespace RPS
                 default:
                     return "rock";
             }
+        }
+        private static bool PlayAgain()
+        {
+            Console.WriteLine("Would you like to play again?");
+            string input = Console.ReadLine().ToLower();
+            input = input.ToLower();
+            if (input == "yes" || input == "y")
+            {
+                return true;
+            }
+            return false;
         }
         private static void WinOrLose(string Input, string Foe)
         {

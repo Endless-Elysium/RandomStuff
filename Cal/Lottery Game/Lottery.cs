@@ -10,6 +10,7 @@ namespace Lottery
     {
         static int Money = 0;
         static int Winnings = 0;
+        static bool Play = true;
         static Random random = new Random();
         static int[] Winning5Numbers;
         static int[] Winning7Numbers;
@@ -19,25 +20,41 @@ namespace Lottery
         public static void GameStart()
         {
             Money = 17;
-            Console.WriteLine("Would you like to play !LUCKY!5s or AMAZ-ING7s?");
-            Console.WriteLine("Lucky fives cost 6 to play");
-            Console.WriteLine("Amazing sevens cost 10 to play");
-            Console.WriteLine("You have " + Money);
-            string input = Console.ReadLine();
-            if (input == null || input == "5")
+            while (Play)
             {
-                LuckyFives();
-            } else if (input == "69")
-            {
-                CreatePlayersNumber(7);
-                for (int i = 5000000;  i > 0; i--)
+                Play = false;
+                Console.WriteLine("Would you like to play !LUCKY!5s or AMAZ-ING7s?");
+                Console.WriteLine("Lucky fives cost 6 to play");
+                Console.WriteLine("Amazing sevens cost 10 to play");
+                Console.WriteLine("You have " + Money);
+                string input = Console.ReadLine();
+                if (input == null || input == "5")
                 {
-                    Console.WriteLine("Remaining:" + i);
-                    SuperSevens();
+                    LuckyFives();
                 }
-            } else
-            {
-                AmazingSevens();
+                else if (input == "69")
+                {
+                    CreatePlayersNumber(7);
+                    for (int i = 5000000; i > 0; i--)
+                    {
+                        Console.WriteLine("Remaining:" + i);
+                        SuperSevens();
+                    }
+                }
+                else
+                {
+                    AmazingSevens();
+                }
+                Console.WriteLine("Would you like to play again?");
+                input = Console.ReadLine();
+                input = input.ToLower();
+                if (input != null || input == "y" || input == "yes")
+                {
+                    Play = true;
+                } else
+                {
+                    return;
+                }
             }
         }
         private static void LuckyFives()
@@ -143,7 +160,6 @@ namespace Lottery
             for (int i = 0; i < 5;  i++)
             {
                 Winning5Numbers[i] = random.Next(1, 51);
-                Console.WriteLine(Winning5Numbers[i]);
             }
             Winning5Numbers = Winning5Numbers.Distinct().ToArray();
             if (Winning5Numbers.Length < 5)
@@ -177,7 +193,7 @@ namespace Lottery
                 {
                     Console.WriteLine("Please enter a number!");
                     i--;
-                }
+                } 
             }
         }
     }

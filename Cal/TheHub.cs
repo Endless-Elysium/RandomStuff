@@ -13,22 +13,25 @@ namespace TheHub
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Press");
-            Console.WriteLine("    1 for Calculator");
-            Console.WriteLine("    2 for RockPaperScissors");
-            Console.WriteLine("    3 for Lottery");
-            string input = Console.ReadLine();
-            switch(input)
+            while (true)
             {
-                case "1":
-                    NumberMachine.GameStart();
-                    break;
-                case "2":
-                    RockPaperScissors.GameStart();
-                    break;
-                case "3":
-                    Gamble.GameStart();
-                    break;
+                Console.WriteLine("Press");
+                Console.WriteLine("    1 for Calculator");
+                Console.WriteLine("    2 for RockPaperScissors");
+                Console.WriteLine("    3 for Lottery");
+                string input = Console.ReadLine();
+                switch(input)
+                {
+                    case "1":
+                        NumberMachine.GameStart();
+                        break;
+                    case "2":
+                        RockPaperScissors.GameStart();
+                        break;
+                    case "3":
+                        Gamble.GameStart();
+                        break;
+                }   
             }
         }
     }
