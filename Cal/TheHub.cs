@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using RPS;
 using Cal;
 using Lottery;
+using Timer;
+using DiceGame;
 
 namespace TheHub
 {
@@ -19,6 +21,8 @@ namespace TheHub
                 Console.WriteLine("    1 for Calculator");
                 Console.WriteLine("    2 for RockPaperScissors");
                 Console.WriteLine("    3 for Lottery");
+                Console.WriteLine("    4 for Timer");
+                Console.WriteLine("    5 for Dice");
                 string input = Console.ReadLine();
                 switch(input)
                 {
@@ -30,6 +34,12 @@ namespace TheHub
                         break;
                     case "3":
                         Gamble.GameStart();
+                        break;
+                    case "4":
+                        Timer.Timer.BeginTimer();
+                        break;
+                    case "5":
+                        Dice.Begin();
                         break;
                 }   
             }
